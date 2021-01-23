@@ -1,7 +1,8 @@
 let on = false;
 let computerTurn;
 let intervalId;
-let order = []
+let turn = []
+let sequenceArrayIndex;
 
 const playButton = document.querySelector("#playbutton");
 const turnCounter = document.querySelector("#turn");
@@ -20,20 +21,22 @@ playButton.addEventListener('click', (event) => {
 
 newGame.addEventListener('click', (event) => {
      on = false;
+     computerTurn = false;
      turnCounter.innerHTML = "";
 })
 
 function play() {
     turnCounter.innerHTML = 1;
     turn = 1;
-    lightUp = 0;
-    colorSequence = [];
+    sequenceArrayIndex = 0;
+    numColorSequence = [];
+    intervalId = 0;
 
     for (let i = 0; i < 10; i++){
-        colorSequence.push(Math.floor(Math.random() * 4) + 1)
+        numColorSequence.push(Math.floor(Math.random() * 4) + 1)
     }
 
-    console.log(colorSequence)
+    console.log(numColorSequence)
 
     computerTurn = true;
     intervalId = setInterval(gameTurn, 800);
@@ -44,10 +47,33 @@ function gameTurn(){
 
     if (computerTurn) {
         clearColor();
-
+        setTimeout(() => {
+            if(numColorSequence[sequenceArrayIndex] == 1) one();
+            if(numColorSequence[sequenceArrayIndex] == 2) two();
+            if(numColorSequence[sequenceArrayIndex] == 3) three();
+            if(numColorSequence[sequenceArrayIndex] == 4) four();
+        }, 200)
+    } else {
+        clearColor();
+        computerTurn = false;
     }
-
 }
+
+function one() {
+    topLeft.style.backgroundColor = "yellow";
+};
+
+function two() {
+    topRight.style.backgroundColor = "yellowgreen";
+};
+
+function three() {
+    bottomLeft.style.backgroundColor = "lightsteelblue";
+};
+
+function four() {
+    bottomRight.style.backgroundColor = "pink";
+};
 
 
 function clearColor() {
