@@ -1,0 +1,88 @@
+header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+#title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 55px;
+}
+
+#playbutton{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+}
+
+#newgame{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+}
+
+#topleft {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    background: goldenrod;
+    top: 50%;
+    left: 50%; 
+    margin: -200px -250px 0px -250px;
+    border-style: solid;
+    border-width: 3px;
+    box-sizing: border-box;
+}
+
+#topright {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    background: green;
+    top: 50%;
+    left: 50%; 
+    margin: -200px 0px 0px 5px;
+    border-style: solid;
+    border-width: 3px;
+    box-sizing: border-box;
+}
+
+#bottomleft {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    background: lightskyblue;
+    top: 50%;
+    left: 50%; 
+    margin: 55px -250px 0px -250px;
+    border-style: solid;
+    border-width: 3px;
+    box-sizing: border-box;
+}
+
+#bottomright {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    background: red;
+    top: 50%;
+    left: 50%; 
+    margin: 55px 0px 0px 5px;
+    border-style: solid;
+    border-width: 3px;
+    box-sizing: border-box;
+}
+
+#turn {
+    position: absolute;
+    height: 50px;
+    width: 100px;
+    background: black;
+    color:white;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 50%;
+    left: 44%; 
+    margin: 350px 0px 0px 10px;
+    text-align: center;
+}
