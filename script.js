@@ -49,6 +49,12 @@ function startPlay() {
 function gameTurn(){
     // on = false;
     if (computerTurn) {
+        turnCounter.innerHTML = turn++
+        let winningScore = turnCounter.innerHTML
+        if(winningScore > 5){
+            win()
+        }
+        
         // clearColor();
         setTimeout(() => {
             if(numColorSequence[sequenceArrayIndex] == 1) one();
@@ -127,8 +133,7 @@ function checkCorrect(){
     if (playerResults[0] === numColorSequence[0]){
         console.log("success!");
         console.log(playerResults)
-        turnCounter.innerHTML = turn++
-        console.log(turnCounter.innerHTML)
+  
         // clearColor()
         sequenceArrayIndex++
         console.log(sequenceArrayIndex)
@@ -139,6 +144,8 @@ function checkCorrect(){
         alert("wrong selection")
         console.log(playerResults)
     }
+}
 
-    
+function win(){
+    alert("you won!")
 }
