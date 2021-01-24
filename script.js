@@ -32,6 +32,7 @@ function startPlay() {
     turnCounter.innerHTML = turn;
     sequenceArrayIndex = 0;
     numColorSequence = [];
+    playerResults = [];
     // intervalId = 0;
 
     for (let i = 0; i < 10; i++){
@@ -148,4 +149,5 @@ function checkCorrect(){
 
 function win(){
     alert("you won!")
+    startPlay()
 }
