@@ -1,10 +1,9 @@
 let on = false;
 let computerTurn;
-let intervalId;
 let turn
 let sequenceArrayIndex;
 let numColorSequence;
-let playerResults = []
+let playerResults = [];
 
 const playButton = document.querySelector("#playbutton");
 const turnCounter = document.querySelector("#turn");
@@ -13,7 +12,6 @@ const topLeft = document.querySelector("#topleft");
 const topRight = document.querySelector("#topright");
 const bottomLeft = document.querySelector("#bottomleft");
 const bottomRight = document.querySelector("#bottomright");
-
 
 
 playButton.addEventListener('click', (event) => {
@@ -33,9 +31,8 @@ function startPlay() {
     sequenceArrayIndex = 0;
     numColorSequence = [];
     playerResults = [];
-    // intervalId = 0;
 
-    for (let i = 0; i < 10; i++){
+    for (let i = 0; i < 5; i++){
         numColorSequence.push(Math.floor(Math.random() * 4) + 1)
     }
 
@@ -48,14 +45,16 @@ function startPlay() {
 
 
 function gameTurn(){
+    console.log("this is game turn")
     // on = false;
     if (computerTurn) {
         turnCounter.innerHTML = turn++
-        let winningScore = turnCounter.innerHTML
-        if(winningScore > 5){
-            win()
-        }
-        
+
+        let winningScore = turnCounter.innerHTML;
+            if(winningScore > 5){
+                win();
+            }
+
         // clearColor();
         setTimeout(() => {
             if(numColorSequence[sequenceArrayIndex] == 1) one();
@@ -64,7 +63,7 @@ function gameTurn(){
             if(numColorSequence[sequenceArrayIndex] == 4) four();
         }, 200)
     } else {
-        clearColor();
+        clearColor()
         computerTurn = false;
     }
 }
@@ -74,6 +73,7 @@ function gameTurn(){
 function one() {
     topLeft.style.backgroundColor = "yellow";
     computerTurn = false;
+    // console.log(computerTurn) is false;
 };
 
 function two() {
@@ -108,6 +108,7 @@ function clearColor() {
 topLeft.addEventListener('click', (event) => {
     playerResults.push(1)
     checkCorrect()
+    computerTurn = false; //don't know if i need this
     one()
 })
 
@@ -130,8 +131,9 @@ bottomRight.addEventListener('click', (event) => {
 })
 
 function checkCorrect(){
-    
-    if (playerResults[0] === numColorSequence[0]){
+
+    if (playerResults[playerResults.length-1] == numColorSequence[sequenceArrayIndex]){
+        
         console.log("success!");
         console.log(playerResults)
   
@@ -140,6 +142,7 @@ function checkCorrect(){
         console.log(sequenceArrayIndex)
         computerTurn = true;
         gameTurn()
+
     } else {
         playerResults.pop();
         alert("wrong selection")
