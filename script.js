@@ -1,8 +1,10 @@
 let on = false;
 let computerTurn;
 let intervalId;
-let turn = []
+let turn
 let sequenceArrayIndex;
+let numColorSequence;
+let playerResults = []
 
 const playButton = document.querySelector("#playbutton");
 const turnCounter = document.querySelector("#turn");
@@ -16,7 +18,7 @@ const bottomRight = document.querySelector("#bottomright");
 
 playButton.addEventListener('click', (event) => {
         on = true;
-        play()
+        startPlay()
 })
 
 newGame.addEventListener('click', (event) => {
@@ -25,28 +27,29 @@ newGame.addEventListener('click', (event) => {
      turnCounter.innerHTML = "";
 })
 
-function play() {
-    turnCounter.innerHTML = 1;
+function startPlay() {  
     turn = 1;
+    turnCounter.innerHTML = turn;
     sequenceArrayIndex = 0;
     numColorSequence = [];
-    intervalId = 0;
+    // intervalId = 0;
 
     for (let i = 0; i < 10; i++){
         numColorSequence.push(Math.floor(Math.random() * 4) + 1)
     }
 
+    // delete this
     console.log(numColorSequence)
 
     computerTurn = true;
-    intervalId = setInterval(gameTurn, 800);
+    setInterval(gameTurn, 800);
 }
 
 function gameTurn(){
-    on = false;
+    // on = false;
 
     if (computerTurn) {
-        clearColor();
+        // clearColor();
         setTimeout(() => {
             if(numColorSequence[sequenceArrayIndex] == 1) one();
             if(numColorSequence[sequenceArrayIndex] == 2) two();
@@ -59,26 +62,75 @@ function gameTurn(){
     }
 }
 
+
+
 function one() {
     topLeft.style.backgroundColor = "yellow";
+    computerTurn = false;
 };
 
 function two() {
     topRight.style.backgroundColor = "yellowgreen";
+    computerTurn = false;
 };
 
 function three() {
     bottomLeft.style.backgroundColor = "lightsteelblue";
+    computerTurn = false;
 };
 
 function four() {
     bottomRight.style.backgroundColor = "pink";
+    computerTurn = false;
 };
-
 
 function clearColor() {
     topLeft.style.backgroundColor = "goldenrod";
     topRight.style.backgroundColor = "green";
-    bottomLeft.style.backgroundColor = "lightskyblue";
+    bottomLeft.style.backgroundColor = "blue";
     bottomRight.style.backgroundColor = "red";
+}
+
+// function userClickFlash() {
+//     topLeft.style.backgroundColor = "yellow";
+//     topRight.style.backgroundColor = "yellowgreen";
+//     bottomLeft.style.backgroundColor = "lightsteelblue";
+//     bottomRight.style.backgroundColor = "pink";
+// }
+
+topLeft.addEventListener('click', (event) => {
+    playerResults.push(1)
+    checkCorrect()
+    one()
+})
+
+topRight.addEventListener('click', (event) => {
+    playerResults.push(2)
+    checkCorrect()
+    two()
+})
+
+bottomLeft.addEventListener('click', (event) => {
+    playerResults.push(3)
+    checkCorrect()
+    three()
+})
+
+bottomRight.addEventListener('click', (event) => {
+    playerResults.push(4)
+    checkCorrect()
+    four()
+})
+
+function checkCorrect(){
+        if (playerResults[0] === numColorSequence[0]){
+        console.log("success!");
+        console.log(playerResults)
+        turnCounter.innerHTML = turn + 1
+        clearColor()
+    } else {
+        playerResults.pop();
+        alert("wrong selection")
+        console.log(playerResults)
+    }
 }
