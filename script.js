@@ -45,9 +45,9 @@ function startPlay() {
     setInterval(gameTurn, 800);
 }
 
+
 function gameTurn(){
     // on = false;
-
     if (computerTurn) {
         // clearColor();
         setTimeout(() => {
@@ -123,14 +123,22 @@ bottomRight.addEventListener('click', (event) => {
 })
 
 function checkCorrect(){
-        if (playerResults[0] === numColorSequence[0]){
+    
+    if (playerResults[0] === numColorSequence[0]){
         console.log("success!");
         console.log(playerResults)
-        turnCounter.innerHTML = turn + 1
-        clearColor()
+        turnCounter.innerHTML = turn++
+        console.log(turnCounter.innerHTML)
+        // clearColor()
+        sequenceArrayIndex++
+        console.log(sequenceArrayIndex)
+        computerTurn = true;
+        gameTurn()
     } else {
         playerResults.pop();
         alert("wrong selection")
         console.log(playerResults)
     }
+
+    
 }
