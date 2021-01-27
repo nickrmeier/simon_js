@@ -54,14 +54,15 @@ function gameTurn(){
             if(winningScore > 5){
                 win();
             }
-
+        // if correct(?) push the next light-up function into an array and invoke the array
+        
         // clearColor();
         setTimeout(() => {
             if(numColorSequence[sequenceArrayIndex] == 1) one();
             if(numColorSequence[sequenceArrayIndex] == 2) two();
             if(numColorSequence[sequenceArrayIndex] == 3) three();
             if(numColorSequence[sequenceArrayIndex] == 4) four();
-        }, 200)
+        }, 300)
     } else {
         clearColor()
         computerTurn = false;
@@ -108,25 +109,28 @@ function clearColor() {
 topLeft.addEventListener('click', (event) => {
     playerResults.push(1)
     checkCorrect()
-    computerTurn = false; //don't know if i need this
+    computerTurn = false;
     one()
 })
 
 topRight.addEventListener('click', (event) => {
     playerResults.push(2)
     checkCorrect()
+    computerTurn = false;
     two()
 })
 
 bottomLeft.addEventListener('click', (event) => {
     playerResults.push(3)
     checkCorrect()
+    computerTurn = false;
     three()
 })
 
 bottomRight.addEventListener('click', (event) => {
     playerResults.push(4)
     checkCorrect()
+    computerTurn = false;
     four()
 })
 
