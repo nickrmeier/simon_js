@@ -1,9 +1,11 @@
 let on = false;
 let computerTurn;
 let turn
-let sequenceArrayIndex;
 let numColorSequence;
+let sequenceArrayIndex;
+// let flashSequenceArr = [];
 let playerResults = [];
+let newFlashArray = [];
 
 const playButton = document.querySelector("#playbutton");
 const turnCounter = document.querySelector("#turn");
@@ -46,7 +48,9 @@ function startPlay() {
 
 function gameTurn(){
     console.log("this is game turn")
-    // on = false;
+     let newFlashArray = numColorSequence.slice(0, sequenceArrayIndex + 1);
+    console.log(newFlashArray)
+
     if (computerTurn) {
         turnCounter.innerHTML = turn++
 
@@ -54,20 +58,71 @@ function gameTurn(){
             if(winningScore > 5){
                 win();
             }
-        // if correct(?) push the next light-up function into an array and invoke the array
         
-        // clearColor();
-        setTimeout(() => {
-            if(numColorSequence[sequenceArrayIndex] == 1) one();
-            if(numColorSequence[sequenceArrayIndex] == 2) two();
-            if(numColorSequence[sequenceArrayIndex] == 3) three();
-            if(numColorSequence[sequenceArrayIndex] == 4) four();
-        }, 300)
+        
+        if(newFlashArray[sequenceArrayIndex] == 1) {
+                previousNumbers(newFlashArray);
+                // one();
+            } else if (newFlashArray[sequenceArrayIndex] == 2) {
+                previousNumbers(newFlashArray);
+                // two();
+            } else if (newFlashArray[sequenceArrayIndex] == 3) {
+                previousNumbers(newFlashArray);
+                // three();
+            } else if (newFlashArray[sequenceArrayIndex] == 4) {
+                previousNumbers(newFlashArray);
+                // four();
+            } else {
+                alert("there has been an error")
+            }
+        
+
     } else {
         clearColor()
         computerTurn = false;
     }
+};
+
+function previousNumbers(array){
+    console.log("this is previous numbs array")
+    // array.pop();
+    console.log(array)
+    array.forEach(function (item) {
+       setTimeout(() => { if (item == 1){
+            one();
+        } else if (item == 2){
+            two();
+        } else if (item == 3){
+            three();
+        } else if (item == 4){
+            four();
+        } else {
+            console.log(error)
+        };
+    }, 500) 
+});
+
+   
 }
+
+
+    // newArr.forEach(item =>
+
+    //     console.log(item)
+        // if (item == 1){
+        //         one();
+        //     } else if (element == 2){
+        //         two();
+        //     } else if (element == 3){
+        //         three();
+        //     } else if (element == 4){
+        //         four();
+        //     } else {
+        //         console.log(error)
+        //     };
+        
+    // );
+
 
 
 
@@ -145,6 +200,10 @@ function checkCorrect(){
         sequenceArrayIndex++
         console.log(sequenceArrayIndex)
         computerTurn = true;
+
+        // numColorSequence.slice(sequenceArrayIndex and backwards)
+        // let newFlashArray = numColorSequence.slice(0, sequenceArrayIndex);
+        // console.log(newFlashArray)
         gameTurn()
 
     } else {
