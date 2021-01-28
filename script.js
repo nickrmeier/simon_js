@@ -42,7 +42,7 @@ function startPlay() {
     console.log(numColorSequence)
 
     computerTurn = true;
-    setInterval(gameTurn, 800);
+    setInterval(gameTurn, 1000);
 }
 
 
@@ -58,8 +58,7 @@ function gameTurn(){
             if(winningScore > 5){
                 win();
             }
-        
-        
+           
         if(newFlashArray[sequenceArrayIndex] == 1) {
                 previousNumbers(newFlashArray);
                 // one();
@@ -75,7 +74,6 @@ function gameTurn(){
             } else {
                 alert("there has been an error")
             }
-        
 
     } else {
         clearColor()
@@ -87,44 +85,23 @@ function previousNumbers(array){
     console.log("this is previous numbs array")
     // array.pop();
     console.log(array)
-    array.forEach(function (item) {
-       setTimeout(() => { if (item == 1){
-            one();
-        } else if (item == 2){
-            two();
-        } else if (item == 3){
-            three();
-        } else if (item == 4){
-            four();
-        } else {
-            console.log(error)
-        };
-    }, 500) 
-});
 
-   
-}
-
-
-    // newArr.forEach(item =>
-
-    //     console.log(item)
-        // if (item == 1){
-        //         one();
-        //     } else if (element == 2){
-        //         two();
-        //     } else if (element == 3){
-        //         three();
-        //     } else if (element == 4){
-        //         four();
-        //     } else {
-        //         console.log(error)
-        //     };
-        
-    // );
-
-
-
+    array.forEach((item, index) => {
+        setTimeout(() => {
+            if (item == 1){
+                one();
+            } else if (item == 2){
+                two();
+            } else if (item == 3){
+                three();
+            } else if (item == 4){
+                four();
+            } else {
+                console.log(error)
+            };
+        }, index * 1000);
+    });
+};
 
 function one() {
     topLeft.style.backgroundColor = "yellow";
@@ -216,4 +193,4 @@ function checkCorrect(){
 function win(){
     alert("you won!")
     startPlay()
-}
+};
